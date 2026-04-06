@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+
+    <h1>Uredi zapis</h1>
+    <form method="POST" action="/update/{{ note.doc_id }}">
+        <input type="text" name="title" value="{{ note.naslov }}"><br>
+        <textarea name="content">{{ note.vsebina }}</textarea><br>
+        <button type="submit">Shrani</button>
+    </form>
+
+</body>
+</html>

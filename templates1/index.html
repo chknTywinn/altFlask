@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapiski</title>
+</head>
+<body>
+    <h1>Zapiski</h1>
+    <form method="POST" action="/add">
+        <input type="text" name="title"><br>
+        <textarea name="content"></textarea><br>
+        <button type="submit">Dodaj</button><br>
+    </form>
+
+    {% for note in notes %}
+    <h2>{{ note["naslov"] }}</h2>
+    <p>{{ note["vsebina"] }}</p>
+    <a href="/edit/{{ note.doc_id }}">Edit</a>
+    <a href="/delete/{{ note.doc_id }}">Delete</a>
+    {% endfor %}
+</body>
+</html>
