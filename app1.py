@@ -5,13 +5,6 @@ app = Flask(__name__, template_folder="templates1", static_folder="static1")
 db = TinyDB("db/notes.json")
 notes = db.all()
 
-#notes = {"title": ["ena","dva"], "content": ["Hello", "world"]}
-#print(notes["title"])
-
-#for note in range(len(notes["title"])):
-#    print(notes["title"][note])
-#    print(notes["content"][note])
-
 @app.route("/")
 def index():
     notes = db.all()

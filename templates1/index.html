@@ -4,20 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zapiski</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
-<body>
-    <h1>Zapiski</h1>
-    <form method="POST" action="/add">
-        <input type="text" name="title"><br>
-        <textarea name="content"></textarea><br>
-        <button type="submit">Dodaj</button><br>
-    </form>
+<body class="bg-gray-100 font-sans text-gray-900">
 
-    {% for note in notes %}
-    <h2>{{ note["naslov"] }}</h2>
-    <p>{{ note["vsebina"] }}</p>
-    <a href="/edit/{{ note.doc_id }}">Edit</a>
-    <a href="/delete/{{ note.doc_id }}">Delete</a>
-    {% endfor %}
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-6">Zapiski</h1>
+        
+        <form method="POST" action="/add" class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+            <div>
+                <label for="title" class="block text-lg font-medium text-gray-700">Title</label>
+                <input type="text" name="title" id="title" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter title" required>
+            </div>
+            
+            <div>
+                <label for="content" class="block text-lg font-medium text-gray-700">Content</label>
+                <textarea name="content" id="content" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter content" required></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-300">Dodaj</button>
+        </form>
+
+        <div class="mt-8">
+            {% for note in notes %}
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">{{ note["naslov"] }}</h2>
+                    <p class="mt-2 text-gray-700">{{ note["vsebina"] }}</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="/edit/{{ note.doc_id }}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                        <a href="/delete/{{ note.doc_id }}" class="text-red-500 hover:text-red-700">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
 </html>
